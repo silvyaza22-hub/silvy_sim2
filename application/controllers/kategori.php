@@ -6,46 +6,44 @@ class kategori extends CI_Controller{
     public function __construct()
     {
         parent ::__construct();
-        $this->load->model('kategori_model');
+        $this->load->model('Kategori_model');
 
     }
     public function index()
     {
-        $data['kategori'] = $this->kategori_model->get_all();
+        $data['kategori'] = $this->Kategori_model->get_all();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
         $this->load->view('kategori/index', $data);
         $this->load->view('templates/footer');
+        
 
     }
     public function tambah()
     {
-        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
         $this->load->view('kategori/tambah');
         $this->load->view('templates/footer');
-
     }
     public function simpan()
     {
         $data= [
             'nama_kategori'=> $this->input->post('nama_kategori')
         ];
-
-        $this->kategori_model->insert($data);
-        redirect('kategori');
+        $this->Kategori_model->insert($data);
+        redirect('Kategori');
     }
     public function hapus($id)
     {
-        // if($this->kategori_model->is_used($id)){
+        // if($this->Kategori_model->is_used($id)){
         //     $this->session->set_flashdata('error', 'Kategori tidak bisa dihapus karena masih digunakan');
-        // } else {
-            $this->kategori_model->delete($id);
-            $this->session->set_flashdata('success', 'Data berhasil dihapus');
+        // }else{
+            $this->Kategori_model->delete($id);
+            $this->session->set_flashdata('success', 'Data Berhasil dihapus');
         // }
         redirect('kategori');
-    }    
+    }
 }
